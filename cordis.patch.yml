@@ -1,0 +1,8 @@
+# dsh-nachoneko-theme bundle patch: register the theme row in the loader tree.
+#
+# The row's `name` is this package; `dsh.client` in package.json makes the
+# client-modules scan pick its ./client bundle into window.__DSH_BOOT__ and
+# serve it at /plugins/dsh-nachoneko-theme/client.js.
+- insert:
+    - id: nachoneko-theme
+      name: 'dsh-nachoneko-theme'

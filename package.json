@@ -1,0 +1,35 @@
+{
+  "name": "dsh-nachoneko-theme",
+  "version": "1.0.0",
+  "description": "Nachoneko (甘城猫猫 / なちょこ) theme for the DeepSeek Harness Web GUI: #A3D3FF palette, full-screen wallpaper and frosted-glass surfaces.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "assets",
+    "build.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,265 @@
+/* ============================================================================
+   Nachoneko (甘城猫猫 / なちょこ) theme for DeepSeek Harness Web GUI
+   ----------------------------------------------------------------------------
+   深色为主 · 全屏壁纸 + 半透明毛玻璃 · 主题色 #A3D3FF
+   安装方式: 把本文件与 nachoneko-bg.jpg 复制到
+     <dsh-web-frontend>/dist/ 下, 并在 dist/index.html 的 <head> 中
+     于其他样式表之后追加:
+       <link rel="stylesheet" href="/nachoneko.css?v=3">
+   卸载: 移除该 <link> 与两个文件即可 (reinstall dsh 也会清除)。
+   ========================================================================== */
+
+/* ---------- 1. 壁纸与压暗遮罩 ---------- */
+
+/* 深色模式 (默认): 蓝调轻遮罩让壁纸清晰可见, 底部略深保证可读性 */
+body {
+  background-color: #0a1020;
+  background-image:
+    linear-gradient(180deg, rgba(12, 24, 46, 0.55), rgba(8, 10, 20, 0.70)),
+    url("/nachoneko-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 浅色模式: 粉白遮罩 */
+body:not([data-ds-dark-theme]) {
+  background-color: #f2f9ff;
+  background-image:
+    linear-gradient(180deg, rgba(238, 247, 255, 0.45), rgba(228, 238, 250, 0.55)),
+    url("/nachoneko-bg.jpg");
+}
+
+/* ---------- 2. Nachoneko 色板: 静态尺度重着色 ----------
+   deepseek 尺度 -> #A3D3FF 浅天蓝 (品牌主色)
+   blue 尺度    -> 略深的伴生蓝 (链接/次级强调)
+   注意: 静态 token 在 design-platform.css 中于 body 与
+   body[data-ds-dark-theme] 两处声明, 因此这里也要两处都覆盖。 */
+
+body,
+body[data-ds-dark-theme] {
+  --dsw-static-deepseek-50: rgb(242, 249, 255);
+  --dsw-static-deepseek-100: rgb(228, 243, 255);
+  --dsw-static-deepseek-200: rgb(206, 234, 255);
+  --dsw-static-deepseek-300: rgb(184, 222, 255);
+  --dsw-static-deepseek-400: rgb(163, 211, 255);   /* #A3D3FF */
+  --dsw-static-deepseek-450: rgb(134, 193, 249);
+  --dsw-static-deepseek-500: rgb(104, 173, 240);
+  --dsw-static-deepseek-600: rgb(72, 143, 216);
+  --dsw-static-deepseek-700-delete: rgb(55, 114, 175);
+  --dsw-static-deepseek-800: rgb(40, 86, 134);
+  --dsw-static-deepseek-900: rgb(26, 59, 94);
+
+  --dsw-static-blue-50: rgb(241, 248, 255);
+  --dsw-static-blue-50p: rgb(237, 246, 255);
+  --dsw-static-blue-75: rgb(230, 243, 253);
+  --dsw-static-blue-100: rgb(218, 237, 251);
+  --dsw-static-blue-300: rgb(168, 212, 244);
+  --dsw-static-blue-400: rgb(132, 192, 238);
+  --dsw-static-blue-450: rgb(106, 175, 229);
+  --dsw-static-blue-500: rgb(84, 156, 216);
+  --dsw-static-blue-600: rgb(62, 126, 186);
+  --dsw-static-blue-800: rgb(40, 84, 128);
+  --dsw-static-blue-900: rgb(29, 63, 98);
+  --dsw-static-blue-950: rgb(19, 46, 73);
+}
+
+/* ---------- 3. 深色模式语义别名 ---------- */
+
+body[data-ds-dark-theme] {
+  /* 品牌色/主按钮 -> #A3D3FF 系 */
+  --dsw-alias-brand-primary: var(--dsw-static-deepseek-400);
+  --dsw-alias-brand-text: var(--dsw-static-deepseek-400);
+  --dsw-alias-brand-primary-invert: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-brand-primary-new-colorprimary-new-color: var(--dsw-static-deepseek-450);
+  --dsw-alias-button-primary-fill: var(--dsw-static-deepseek-450);
+  --dsw-alias-button-primary-hover: var(--dsw-static-deepseek-300);
+  --dsw-alias-button-primary-dimmed: var(--dsw-static-deepseek-800);
+  --dsw-alias-button-info-fill: var(--dsw-static-deepseek-450);
+  --dsw-alias-button-info-hover: var(--dsw-static-deepseek-500);
+
+  /* 交互悬浮 -> 蓝调 */
+  --dsw-alias-interactive-bg-hover-accent: rgba(163, 211, 255, 0.20);
+  --dsw-alias-interactive-bg-active: rgba(163, 211, 255, 0.16);
+  --dsw-alias-interactive-bg-hover: rgba(255, 255, 255, 0.08);
+
+  /* 业务主色/链接 */
+  --dsw-alias-state-business-primary: var(--dsw-static-deepseek-400);
+  --dsw-alias-state-business-tertiary: var(--dsw-static-deepseek-800);
+  --dsw-alias-label-primary-bluish: var(--dsw-static-blue-300);
+
+  /* 侧边栏毛玻璃 (颜色 + 模糊在下方类选择器里) */
+  --dsw-specific-sidebar-fill: rgba(16, 26, 42, 0.42);
+
+  /* 气泡: 微蓝深色玻璃 */
+  --dsw-specific-bubble: rgba(22, 30, 46, 0.78);
+  --dsw-specific-bubble-highlight: rgba(30, 42, 60, 0.85);
+
+  /* 滚动条 -> 蓝 */
+  --dsw-alias-scrollbar-bg-l1: rgba(120, 180, 245, 0.30);
+  --dsw-alias-scrollbar-bg-l2: rgba(120, 180, 245, 0.36);
+  --dsw-alias-scrollbar-hover-l1: rgba(120, 180, 245, 0.46);
+  --dsw-alias-scrollbar-hover-l2: rgba(120, 180, 245, 0.52);
+}
+
+/* ---------- 4. 浅色模式语义别名 ---------- */
+
+body:not([data-ds-dark-theme]) {
+  --dsw-alias-brand-primary-new-colorprimary-new-color: var(--dsw-static-deepseek-500);
+  --dsw-alias-button-primary-fill: var(--dsw-static-deepseek-600);
+  --dsw-alias-button-primary-hover: var(--dsw-static-deepseek-700-delete);
+  --dsw-alias-button-info-fill: var(--dsw-static-deepseek-500);
+  --dsw-alias-button-info-hover: var(--dsw-static-deepseek-600);
+  --dsw-alias-interactive-bg-hover-accent: rgba(104, 173, 240, 0.12);
+  --dsw-alias-state-business-primary: var(--dsw-static-deepseek-500);
+  --dsw-alias-label-primary-bluish: var(--dsw-static-blue-600);
+  --dsw-specific-sidebar-fill: rgba(246, 250, 255, 0.55);
+  --dsw-alias-scrollbar-bg-l1: rgba(104, 173, 240, 0.22);
+  --dsw-alias-scrollbar-bg-l2: rgba(104, 173, 240, 0.28);
+  --dsw-alias-scrollbar-hover-l1: rgba(104, 173, 240, 0.40);
+  --dsw-alias-scrollbar-hover-l2: rgba(104, 173, 240, 0.46);
+}
+
+/* ---------- 5. 表面: 让壁纸透出来 ----------
+   这些模块样式由客户端插件在运行时注入 <style>, 晚于本文件,
+   所以用 body 前缀提高特异性来保证覆盖。
+   注意: 绝不能把 backdrop-filter 直接加在侧边栏列上——那会把
+   position:fixed 的后代(设置弹窗等)关进侧边栏的包含块里, 导致
+   弹窗只有侧边栏那么宽。毛玻璃改由 ::before 伪元素实现。 */
+
+/* 应用根容器: 去掉不透明底色 */
+body .pI_x6G_frame {
+  background: transparent;
+}
+
+/* 对话区根容器: 原来用不透明的 --dsw-alias-bg-base 铺满中心列,
+   会完全挡住壁纸。改为半透明玻璃色 (不能用 backdrop-filter,
+   否则会把对话区里的浮层/弹层关进包含块)。 */
+body .wSkVaW_root {
+  background: rgba(10, 16, 28, 0.40);
+}
+body:not([data-ds-dark-theme]) .wSkVaW_root {
+  background: rgba(244, 250, 255, 0.45);
+}
+
+/* 启动画面: 去掉不透明底色 */
+body ._boot_9gj4p_6 {
+  background: transparent;
+}
+
+/* 侧边栏: 半透明 + 毛玻璃 (伪元素实现, 不产生 fixed 包含块) */
+body .pI_x6G_sidebarCol {
+  position: relative;
+  background: transparent;
+}
+body .pI_x6G_sidebarCol::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(20px) saturate(1.25);
+  backdrop-filter: blur(20px) saturate(1.25);
+}
+
+/* 深色模式下侧边栏毛玻璃底色 */
+body[data-ds-dark-theme] .pI_x6G_sidebarCol::before {
+  background: rgba(16, 26, 42, 0.45);
+}
+
+/* 浅色模式侧边栏: 白蓝毛玻璃 */
+body:not([data-ds-dark-theme]) .pI_x6G_sidebarCol::before {
+  background: rgba(246, 250, 255, 0.55);
+}
+
+/* 消息输入框卡片: 毛玻璃 (同样用 ::before 伪元素, 避免把输入框内的
+   弹层/下拉 (命令菜单、模型选择等) 关进包含块) */
+body .uV2eYG_card {
+  background: transparent;
+}
+body[data-ds-dark-theme] .uV2eYG_card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(14, 22, 36, 0.55);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  backdrop-filter: blur(24px) saturate(1.3);
+}
+body:not([data-ds-dark-theme]) .uV2eYG_card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  backdrop-filter: blur(24px) saturate(1.3);
+}
+
+/* Markdown 代码块 (md-code-block / _block_178r4_4): 毛玻璃。
+   代码块需要比输入框更高对比度, 底色略实 (0.65)。
+   顶部的语言条/复制按钮保留原不透明底 (滚动吸顶时不能被内容透穿)。 */
+body .md-code-block {
+  background: transparent;
+}
+body[data-ds-dark-theme] .md-code-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(13, 20, 34, 0.65);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  backdrop-filter: blur(24px) saturate(1.3);
+}
+body:not([data-ds-dark-theme]) .md-code-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  backdrop-filter: blur(24px) saturate(1.3);
+}
+
+/* 设置页左下角装饰图 (296.jpg)。
+   挂在设置弹窗面板 .VOzbGW_panel 的 ::after 上, 仅弹窗打开时存在;
+   z-index:-1 让图片垫在内容下层 (面板自身背景之上、设置内容之下),
+   不会遮挡右侧设置内容, pointer-events:none 也不拦截点击。 */
+body .VOzbGW_panel::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: -1;
+  width: 240px;
+  height: 140px;
+  background-image: url("/nachoneko-corner.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  pointer-events: none;
+  opacity: 0.95;
+  border-radius: 12px;
+}
+
+/* ---------- 6. 细节微调 ---------- */
+
+/* 深色: 输入区/面板保持可读的深底, 略向蓝偏移 */
+body[data-ds-dark-theme] {
+  --dsw-alias-bg-layer-1: rgb(17, 23, 35);
+  --dsw-alias-bg-layer-2: rgb(21, 28, 41);
+  --dsw-alias-bg-layer-3: rgb(25, 32, 47);
+  --dsw-alias-bg-module-platform: rgb(18, 24, 37);
+  --dsw-alias-bg-overlay: rgb(29, 37, 52);
+  --dsw-specific-input-major: rgb(21, 28, 41);
+  --dsw-specific-menu: var(--dsw-alias-bg-layer-3);
+}
