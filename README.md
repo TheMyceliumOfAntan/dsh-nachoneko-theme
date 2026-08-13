@@ -4,7 +4,7 @@ Nachoneko（甘城猫猫 / なちょこ）主题插件 for [DeepSeek Harness](ht
 
 深色为主 · 全屏壁纸 + 半透明毛玻璃 · 主题色 `#A3D3FF`。
 
-![preview](assets/nachoneko-bg.jpg)
+![Nachoneko theme in the dsh Web GUI](assets/screenshot.png)
 
 ## 功能
 
@@ -58,6 +58,7 @@ dsh plugin --profile web remove dsh-nachoneko-theme
 | `assets/nachoneko.css` | 主题样式源（token 重着色 + 壁纸遮罩 + 毛玻璃 + 角标） |
 | `assets/nachoneko-bg.jpg` | 全屏壁纸（由 063.png 压缩为 1920px JPEG） |
 | `assets/nachoneko-corner.jpg` | 设置页左下角装饰图（由 296.jpg 压缩为 480x280） |
+| `assets/screenshot.png` | 主题实际效果截图（1600px） |
 
 改完 `assets/nachoneko.css` 或换图后重新生成自包含 bundle：
 
