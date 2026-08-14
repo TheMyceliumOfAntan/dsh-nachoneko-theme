@@ -11,12 +11,18 @@
 
 /* ---------- 1. 壁纸与压暗遮罩 ---------- */
 
+/* 壁纸只内联一次, 深浅两套背景共用 (build.mjs 会把它替换成 base64 data URI,
+   避免同一个 200KB base64 在 CSS 里出现两次)。 */
+body {
+  --nachoneko-wallpaper: url("/nachoneko-bg.jpg");
+}
+
 /* 深色模式 (默认): 蓝调轻遮罩让壁纸清晰可见, 底部略深保证可读性 */
 body {
   background-color: #0a1020;
   background-image:
     linear-gradient(180deg, rgba(12, 24, 46, 0.55), rgba(8, 10, 20, 0.70)),
-    url("/nachoneko-bg.jpg");
+    var(--nachoneko-wallpaper);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -28,7 +34,7 @@ body:not([data-ds-dark-theme]) {
   background-color: #f2f9ff;
   background-image:
     linear-gradient(180deg, rgba(238, 247, 255, 0.45), rgba(228, 238, 250, 0.55)),
-    url("/nachoneko-bg.jpg");
+    var(--nachoneko-wallpaper);
 }
 
 /* ---------- 2. Nachoneko 色板: 静态尺度重着色 ----------
