@@ -57,7 +57,7 @@ dsh plugin --profile web remove dsh-nachoneko-theme
 |------|------|
 | `assets/nachoneko.css` | 主题样式源（token 重着色 + 壁纸遮罩 + 毛玻璃 + 角标） |
 | `assets/nachoneko-bg.jpg` | 全屏壁纸（由 063.png 压缩为 1920px JPEG） |
-| `assets/nachoneko-corner.jpg` | 设置页左下角装饰图（由 296.jpg 压缩为 480x280） |
+| `assets/nachoneko-corner.png` | 设置页左下角装饰图（由 296.png 压缩为 360x210，**透明背景**，暗色主题不刺眼） |
 | `assets/screenshot.png` | 主题实际效果截图（1600px） |
 
 改完 `assets/nachoneko.css` 或换图后重新生成自包含 bundle：
@@ -77,7 +77,7 @@ node build.mjs
 ## 资源版权
 
 - 代码（`client.js`、`index.js`、`build.mjs`、`cordis.patch.yml`）：MIT，见 [LICENSE](LICENSE)。
-- `assets/` 下的插画图片来自网络，**不随 MIT 许可证授权**；分发或二次发布请自行确认素材权利。壁纸 `nachoneko-bg.jpg` 、角标 `nachoneko-corner.jpg` 著作权由原作者 `甘城なつき` 所有。
+- `assets/` 下的插画图片来自网络，**不随 MIT 许可证授权**；分发或二次发布请自行确认素材权利。壁纸 `nachoneko-bg.jpg`、角标 `nachoneko-corner.png`（由 296.png 去背景处理）著作权由原作者 `甘城なつき` 所有。
 
 ## License
 

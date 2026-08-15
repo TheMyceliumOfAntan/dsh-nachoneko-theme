@@ -236,7 +236,7 @@ body:not([data-ds-dark-theme]) .md-code-block::before {
   backdrop-filter: blur(24px) saturate(1.3);
 }
 
-/* 设置页左下角装饰图 (296.jpg)。
+/* 设置页左下角装饰图 (296.png, 透明背景)。
    挂在设置弹窗面板 .VOzbGW_panel 的 ::after 上, 仅弹窗打开时存在;
    z-index:-1 让图片垫在内容下层 (面板自身背景之上、设置内容之下),
    不会遮挡右侧设置内容, pointer-events:none 也不拦截点击。 */
@@ -248,7 +248,7 @@ body .VOzbGW_panel::after {
   z-index: -1;
   width: 240px;
   height: 140px;
-  background-image: url("/nachoneko-corner.jpg");
+  background-image: url("/nachoneko-corner.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left bottom;
